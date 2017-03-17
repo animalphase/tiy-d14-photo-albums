@@ -1,0 +1,9 @@
+@mixin shadow-box-main {
+  box-shadow: 0 .1rem .4rem -.2rem rgba($color-link, 1),
+              0 .7rem 1rem -.2rem rgba($color-link, .2);
+  &:hover {
+    box-shadow: 0 0 0 -1rem rgba($color-link, 1),
+                0 1rem 1.8rem -.4rem rgba($color-link, .6);
+    transition: 1s box-shadow ease;
+  }
+}

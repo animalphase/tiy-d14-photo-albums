@@ -1,0 +1,60 @@
+html {
+  font-size: 0.625rem; /* 10px equivalent thanks to default of 16px */
+  background: $color-background;
+  color: $color-text-primary;
+  font-family: 'Comfortaa', sans-serif;
+  background: radial-gradient(
+    circle,
+    $color-secondary,
+    $color-secondary 15%,
+    #fff 15%,
+    #fff
+  );
+  background-size: 20px 20px;
+
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  color: $color-text-primary;
+  font-size: 1.6rem; /* 16px equivalent */
+}
+
+a {
+  color: $color-link;
+  text-decoration: none;
+  transition: .1s ease all;
+}
+
+a:hover {
+  color: $color-link-hover;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+.content-container {
+  width: 80%;
+  margin: 4rem auto;
+  text-align: center;
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+/*
+#mainContainer {
+  opacity: 0;
+  transition: 1s opacity ease;
+}
+
+#mainContainer.fade-in {
+  transition: 1s opacity ease;
+  opacity: 1;
+}
+*/
