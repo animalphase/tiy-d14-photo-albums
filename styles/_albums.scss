@@ -1,42 +1,44 @@
 
 
-
-.album-list {
-  list-style: none;
-  width: 80%;
-  margin: 6rem auto;
-  padding: 0;
-  text-align: center;
-
-  li {
-    margin: 0 3rem 3rem 0;
+.albums-page {
+  .album-list {
+    list-style: none;
+    width: 80%;
+    margin: 6rem auto;
     padding: 0;
-    width: 30rem;
-    display: inline-block;
+    text-align: center;
+
+    li {
+      margin: 0 3rem 3rem 0;
+      padding: 0;
+      width: 30rem;
+      display: inline-block;
+    }
+  }
+
+  .album-link {
+    display: block;
+    width: 100%;
+    padding: 5rem 2rem;
+    text-align: center;
+    font-size: 3rem;
+    border: $border-width-meaurement solid $color-borders;
+    border-radius: $border-radius-measurement;
+    background-color: #fff;
+    @include shadow-box-main;
+    transition: .3s ease all;
+
+    &:hover, &:focus {
+      border-color: $color-link;;
+      //@include shadow-box-main-hover;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 
-.album-link {
-  display: block;
-  width: 100%;
-  padding: 5rem 2rem;
-  text-align: center;
-  font-size: 3rem;
-  border: $border-width-meaurement solid $color-borders;
-  border-radius: $border-radius-measurement;
-  background-color: #fff;
-  @include shadow-box-main;
-  transition: .3s ease all;
-
-  &:hover, &:focus {
-    border-color: $color-link;;
-    //@include shadow-box-main-hover;
-  }
-
-  &:focus {
-    outline: none;
-  }
-}
 
 .menu-link {
   display: inline-block;

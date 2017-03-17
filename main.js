@@ -3,17 +3,46 @@
 var $mainContainer = $('#mainContainer');
 var targetAlbum;
 
-// TODO: base Albums and properties to be derived from image properties rather than pre-planned
-var albums = [
-  "Album 1",
-  "Album 2",
-  "Album 3",
-  "Album 4"
-];
+var albums = images.reduce(function(acc, image){
+  if(acc.indexOf(image.album) >= 0) {
+
+  } else {
+    acc.push(image.album);
+  }
+  return acc;
+}, []);
+
+
+console.log(albums);
+
 var albumLinks = albums.map(function(album, i, arry){
-  return '<a href="#">' + album + '</a>';
+  return '<a class="album-link" href="#">' + album + '</a>';
 });
+
+
 var albumLinksString = albumLinks.join('');
+
+
+function generateAblumLinksListString () {
+  var content =   '<ul class="album-list">';
+  albumLinks.forEach(function(albumLink, i, arr) {
+      content += '<li>' +  albumLink + '</li>';
+  });
+      content += '</ul>';
+  return content;
+}
+
+var ablumLinksListString = generateAblumLinksListString();
+
+
+
+function setAlbumClickEvents() {
+  $('.album-link').on('click', function(e) {
+    targetAlbum = e.target.innerText;
+    renderAlbum(targetAlbum);
+  });
+}
+
 
 
 function insertNavMenu() {
@@ -23,7 +52,7 @@ function insertNavMenu() {
                     '<div class="nav-album-links">';
   // albumLinks.forEach(function(item){
   //     content += item; });
-      content +=      albumLinksString;
+      content +=      ablumLinksListString;
       content +=    '</div>' +
                   '</nav>';
 
@@ -32,10 +61,7 @@ function insertNavMenu() {
   $('.menu-link').on('click', function(){
     renderAlbumsPage($mainContainer);
   });
-  $('.nav-album-links a').on('click', function(e) {
-    targetAlbum = e.target.innerText;
-    renderAlbum(targetAlbum);
-  });
+  setAlbumClickEvents();
 }
 
 
@@ -53,27 +79,22 @@ function insertImageTopMenu() {
 }
 
 
-function setAlbumClickEvents() {
-  $('.album-link').on('click', function(e) {
-    targetAlbum = e.target.innerText;
-    renderAlbum(targetAlbum);
-  });
-}
 
 
-// TODO: split insert albums links into separate function for reuse in the nav
 
-function renderAlbumsPage(targetElement) {
+function renderAlbumsPage() {
   console.log('inserting albums');
-  var content = '<header class="albums-header"><h1>My Albums</h1></header>' +
-                '<ul class="album-list">';
-  albums.forEach(function(album){
-      content += '<li><a class="album-link" href="#">'+ album +'</a></li>';
-    });
-  content += '</ul>';
-  targetElement.html(content);
+  var content =   '<header class="albums-header"><h1>My Albums</h1></header>' +
+                  ablumLinksListString +
+                  '</ul>';
+  // make the elements as jquery elements
+  // put those into the dom
+  $mainContainer.html(content);
+  $mainContainer.removeClass(); //remove all classes
+  $mainContainer.addClass('albums-page');
   // after albums are in place, activate their event listeners
   setAlbumClickEvents();
+  // register the event listener here, but refernce the callback elsewhere
 }
 
 
@@ -97,6 +118,8 @@ function renderAlbum(albumName) {
   });
   content += '</div>';
   $mainContainer.html(content);
+  $mainContainer.removeClass(); //remove all classes
+  $mainContainer.addClass('album-page');
   $('.image-thumbnail a').on('click', renderImage);
   insertNavMenu();
 }
@@ -110,6 +133,8 @@ function renderImage(e) {
                 imagePath +
                 '"></div>';
   $mainContainer.append(content);
+  $mainContainer.removeClass(); //remove all classes
+  $mainContainer.addClass('image-page');
   insertImageTopMenu();
 }
 
