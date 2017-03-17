@@ -1,67 +1,73 @@
 
-// global config
-var $mainContainer = $('#mainContainer');
-var targetAlbum;
 
-var albums = images.reduce(function(acc, image){
-  if(acc.indexOf(image.album) >= 0) {
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Global Config
++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-  } else {
+var $g_mainContainer = $('#mainContainer');
+var g_imagesPath = 'images/';
+var g_currentAlbum; // "track state" kinda
+
+var g_albums = images.reduce(function(acc, image){
+  if(acc.indexOf(image.album) >= 0) {}
+  else {
     acc.push(image.album);
   }
   return acc;
 }, []);
 
 
-console.log(albums);
-
-var albumLinks = albums.map(function(album, i, arry){
-  return '<a class="album-link" href="#">' + album + '</a>';
-});
-
-
-var albumLinksString = albumLinks.join('');
-
-
 function generateAblumLinksListString () {
   var content =   '<ul class="album-list">';
-  albumLinks.forEach(function(albumLink, i, arr) {
-      content += '<li>' +  albumLink + '</li>';
+  g_albums.forEach(function(albumLink, i, arr) {
+      content += '<li><a class="album-link" href="#">' +  albumLink + '</a></li>';
   });
       content += '</ul>';
   return content;
 }
 
-var ablumLinksListString = generateAblumLinksListString();
+var g_albumsUlString = generateAblumLinksListString();
 
 
 
-function setAlbumClickEvents() {
-  $('.album-link').on('click', function(e) {
-    targetAlbum = e.target.innerText;
-    renderAlbum(targetAlbum);
-  });
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Logic™, handled by event handlers
++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+function clickAlbumsPageLink(e) {
+  renderAlbumsPage(g_albumsUlString);
+}
+
+
+function clickAlbumLink(e) {
+  e.preventDefault();
+  g_currentAlbum = e.target.innerText;
+  renderAlbum(g_currentAlbum);
 }
 
 
 
-function insertNavMenu() {
-  // build nav dom string
-  var content =   '<nav>' +
-                    '<a href="#" class="menu-link"><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;&nbsp;Menu</a>' +
-                    '<div class="nav-album-links">';
-  // albumLinks.forEach(function(item){
-  //     content += item; });
-      content +=      ablumLinksListString;
-      content +=    '</div>' +
-                  '</nav>';
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Generic Component Construction
++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+
+function insertNavMenu($targetParent) {
+  var $nav = $( '<nav>' +
+                  '<a href="#" class="menu-link"><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;&nbsp;Album Menu</a>' +
+                  '<div class="nav-album-links">' +
+                  '</div>' +
+                '</nav>' );
+  var $albumUl = $(g_albumsUlString);
+  $nav.append($albumUl);
 
   // activate click events for all strings
-  $mainContainer.prepend(content);
-  $('.menu-link').on('click', function(){
-    renderAlbumsPage($mainContainer);
-  });
-  setAlbumClickEvents();
+  $targetParent.prepend($nav);
+  $nav.find('.menu-link').on('click', clickAlbumsPageLink);
+  $albumUl.find('a').on('click', clickAlbumLink);
 }
 
 
@@ -69,12 +75,12 @@ function insertNavMenu() {
 function insertImageTopMenu() {
   var content = '<nav>' +
                 '<a href="#" class="menu-link"><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;&nbsp;' +
-                targetAlbum +
+                g_currentAlbum +
                 '</a>' +
                 '</nav>';
-  $mainContainer.prepend(content);
+  $g_mainContainer.prepend(content);
   $('.menu-link').on('click', function(){
-    renderAlbum(targetAlbum);
+    renderAlbum(g_currentAlbum);
   });
 }
 
@@ -82,31 +88,35 @@ function insertImageTopMenu() {
 
 
 
-function renderAlbumsPage() {
-  console.log('inserting albums');
-  var content =   '<header class="albums-header"><h1>My Albums</h1></header>' +
-                  ablumLinksListString +
-                  '</ul>';
+function renderAlbumsPage(albumsUl) {
+
   // make the elements as jquery elements
+  var $header = $('<header class="albums-header"><h1>My Albums</h1></header>');
+  var $albumsUl = $(albumsUl);
+
   // put those into the dom
-  $mainContainer.html(content);
-  $mainContainer.removeClass(); //remove all classes
-  $mainContainer.addClass('albums-page');
-  // after albums are in place, activate their event listeners
-  setAlbumClickEvents();
-  // register the event listener here, but refernce the callback elsewhere
+  $g_mainContainer.html('');
+  $g_mainContainer.append($header);
+  $g_mainContainer.append($albumsUl);
+  $g_mainContainer.removeClass(); //remove all classes
+  $g_mainContainer.addClass('albums-page');
+
+  // after everything is in place, activate their event listeners
+  $albumsUl.find('a').on('click', clickAlbumLink);
 }
 
 
 
 
 function renderAlbum(albumName) {
-  console.log('inserting images in album: ' + albumName);
-  var path = 'images/';
-  var content = '<div class="content-container">' +
-                '<h2><i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;' +
-                targetAlbum + '</h2>';
 
+  // generate content as jQuery elements
+  var $content = $('<div class="content-container"><h2 class="album-header"></h2></div>');
+  $content.find('.album-header').append(
+    '<i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;' +
+    g_currentAlbum);
+
+    // TODO: do this first and this pass in
   // filter to only images in this album
   var imagesInAlbum = images.filter(function(image, i, array){
     return image.album === albumName;
@@ -114,27 +124,28 @@ function renderAlbum(albumName) {
 
   // go through each image in this album and put it into the dom
   imagesInAlbum.forEach(function(image, i, array) {
-    content += '<div class="image-thumbnail"><a href="#"><img src="'+ path + image.filename + '"></a></div>';
+    $content.append('<div class="image-thumbnail"><a href="#"><img src="'+ g_imagesPath + image.filename + '"></a></div>');
   });
-  content += '</div>';
-  $mainContainer.html(content);
-  $mainContainer.removeClass(); //remove all classes
-  $mainContainer.addClass('album-page');
+
+  $g_mainContainer.html('');
+  $g_mainContainer.append($content);
+  $g_mainContainer.removeClass(); //remove all classes
+  $g_mainContainer.addClass('album-page');
   $('.image-thumbnail a').on('click', renderImage);
-  insertNavMenu();
+  insertNavMenu($g_mainContainer);
 }
 
 function renderImage(e) {
   var imagePath = e.target.src;
   console.log('displaying image: ' + imagePath);
-  $mainContainer.html('');
+  $g_mainContainer.html('');
   var content = '<div class="content-container">' +
                 '<img src="' +
                 imagePath +
                 '"></div>';
-  $mainContainer.append(content);
-  $mainContainer.removeClass(); //remove all classes
-  $mainContainer.addClass('image-page');
+  $g_mainContainer.append(content);
+  $g_mainContainer.removeClass(); //remove all classes
+  $g_mainContainer.addClass('image-page');
   insertImageTopMenu();
 }
 
@@ -145,22 +156,8 @@ function renderImage(e) {
 $(document).ready(function(){
 
 
-  renderAlbumsPage($mainContainer);
+  renderAlbumsPage(g_albumsUlString);
   // insertAllImages();
   // renderAlbum('Album 1');
 
 });
-
-
-
-
-// function insertAllImages() {
-//   console.log('inserting all images');
-//   var path = 'images/';
-//   var content = '<div class="image-thumbnail-container">';
-//   images.forEach(function(image, i, array) {
-//     content += '<div class="image-thumbnail"><img src="'+ path + image.filename + '"></div>';
-//   });
-//   content += '</div>';
-//   $mainContainer.html(content);
-// }
