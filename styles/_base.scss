@@ -7,11 +7,20 @@ html {
     circle,
     $color-secondary,
     $color-secondary 15%,
-    #fff 15%,
-    #fff
+    $color-background 15%,
+    $color-background
   );
   background-size: 20px 20px;
 
+  // background:
+  //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
+  //   radial-gradient(circle, transparent 20%, $color-background   20%, $color-background 80%, transparent 80%, transparent) 50px 50px,
+  //   linear-gradient($color-secondary 8px, transparent 8px) 0 -4px,
+  //   linear-gradient(90deg, $color-secondary 8px, transparent 8px) -4px 0;
+  // background-color: $color-background;
+  // background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
+
+  // TODO: combine the above two techniques to get a little circle with crosshairs overlayed
 
   * {
     box-sizing: border-box;

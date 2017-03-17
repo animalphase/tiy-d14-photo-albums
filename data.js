@@ -1,9 +1,12 @@
+
+// TODO: base Albums and properties to be derived from image properties rather than pre-planned
 var albums = [
   "Album 1",
   "Album 2",
   "Album 3",
   "Album 4"
 ];
+
 var properties = ["sky", "space", "ocean", "mist", "earth"];
 
 var images = [

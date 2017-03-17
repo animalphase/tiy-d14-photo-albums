@@ -1,29 +1,36 @@
-console.log('hi');
 
 // global config
 var $mainContainer = $('#mainContainer');
 var targetAlbum;
 
+// TODO: base Albums and properties to be derived from image properties rather than pre-planned
+var albums = [
+  "Album 1",
+  "Album 2",
+  "Album 3",
+  "Album 4"
+];
+var albumLinks = albums.map(function(album, i, arry){
+  return '<a href="#">' + album + '</a>';
+});
+var albumLinksString = albumLinks.join('');
 
-
-
-
-
-
-var albumLinks = albums.reduce(function(acc, item, i, array) {
-  return acc += '<a href="#">' + item + '</a>';
-}, '' );
 
 function insertNavMenu() {
-  var content = '<nav>' +
-                '<a href="#" class="menu-link"><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;&nbsp;Menu</a>' +
-                '<div class="nav-album-links">' +
-                albumLinks +
-                '</div>' +
-                '</nav>';
+  // build nav dom string
+  var content =   '<nav>' +
+                    '<a href="#" class="menu-link"><i class="fa fa-hand-o-left" aria-hidden="true"></i>&nbsp;&nbsp;Menu</a>' +
+                    '<div class="nav-album-links">';
+  // albumLinks.forEach(function(item){
+  //     content += item; });
+      content +=      albumLinksString;
+      content +=    '</div>' +
+                  '</nav>';
+
+  // activate click events for all strings
   $mainContainer.prepend(content);
   $('.menu-link').on('click', function(){
-    renderAlbums($mainContainer);
+    renderAlbumsPage($mainContainer);
   });
   $('.nav-album-links a').on('click', function(e) {
     targetAlbum = e.target.innerText;
@@ -54,14 +61,15 @@ function setAlbumClickEvents() {
 }
 
 
+// TODO: split insert albums links into separate function for reuse in the nav
 
-function renderAlbums(targetElement) {
+function renderAlbumsPage(targetElement) {
   console.log('inserting albums');
   var content = '<header class="albums-header"><h1>My Albums</h1></header>' +
                 '<ul class="album-list">';
-  for(var i = 0; i < albums.length; i++) {
-    content += '<li><a class="album-link" href="#">'+ albums[i] +'</a></li>';
-  }
+  albums.forEach(function(album){
+      content += '<li><a class="album-link" href="#">'+ album +'</a></li>';
+    });
   content += '</ul>';
   targetElement.html(content);
   // after albums are in place, activate their event listeners
@@ -108,24 +116,13 @@ function renderImage(e) {
 
 
 
-
-
-
-
-
-
-
-
-
 // do the jQuery
 $(document).ready(function(){
 
 
-  renderAlbums($mainContainer);
+  renderAlbumsPage($mainContainer);
   // insertAllImages();
   // renderAlbum('Album 1');
-
-
 
 });
 

@@ -1,9 +1,12 @@
 @mixin shadow-box-main {
-  box-shadow: 0 .1rem .4rem -.2rem rgba($color-link, 1),
-              0 .7rem 1rem -.2rem rgba($color-link, .2);
+  box-shadow: 0 .3rem .2rem 0 rgba($color-background, .8),
+              0 .3rem .8rem -.4rem rgba($color-link, 1),
+              0 .8rem 1rem -.6rem rgba($color-shadow-mix, .2);
+  transition: .3s box-shadow ease;
   &:hover {
-    box-shadow: 0 0 0 -1rem rgba($color-link, 1),
-                0 1rem 1.8rem -.4rem rgba($color-link, .6);
-    transition: 1s box-shadow ease;
+    box-shadow: 0 .6rem .2rem -.2rem rgba($color-background, .2),
+                0 1rem 1.8rem -1rem rgba($color-link, 1),
+                0 1rem 1.8rem -.4rem rgba($color-shadow-mix, .6);
+    transition: .65s box-shadow ease;
   }
 }
