@@ -3,14 +3,14 @@ html {
   background: $color-background;
   color: $color-text-primary;
   font-family: 'Comfortaa', sans-serif;
-  background: radial-gradient(
-    circle,
-    $color-secondary,
-    $color-secondary 15%,
-    $color-background 15%,
-    $color-background
-  );
-  background-size: 20px 20px;
+  // background: radial-gradient(
+  //   circle,
+  //   $color-secondary,
+  //   $color-secondary 15%,
+  //   $color-background 15%,
+  //   $color-background
+  // );
+  // background-size: 20px 20px;
 
   // background:
   //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
@@ -21,6 +21,39 @@ html {
   // background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
 
   // TODO: combine the above two techniques to get a little circle with crosshairs overlayed
+
+  // background:
+  //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
+  //   radial-gradient(circle, transparent 20%, $color-background   20%, $color-background 80%, transparent 80%, transparent) 50px 50px,
+  //   linear-gradient($color-secondary 8px, transparent 8px) 0 -4px,
+  //   linear-gradient(90deg, $color-secondary 8px, transparent 8px) -4px 0,
+  //   radial-gradient(
+  //   circle,
+  //   $color-secondary,
+  //   $color-secondary 15%,
+  //   $color-background 15%,
+  //   $color-background);
+  //
+  // background-size: 20px 20px;
+
+
+  // background:
+  //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
+  //   radial-gradient(circle, transparent 20%, $color-background   20%, $color-background 80%, transparent 80%, transparent) 50px 50px,
+  //   linear-gradient($color-secondary 8px, transparent 8px) 0 -4px,
+  //   linear-gradient(90deg, $color-secondary 8px, transparent 8px) -4px 0;
+  //
+  // background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+
+
+  background:
+  radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 90%, transparent 90%, transparent),
+  radial-gradient(circle, transparent 20%, $color-primary   20%, $color-primary 90%, transparent 90%, transparent) -4px -8px,
+  linear-gradient($color-secondary 4px, transparent 4px) 0 -2px,
+  linear-gradient(90deg, $color-secondary 4px, transparent 4px) -2px 0;
+
+  background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
+background-color: tint($color-borders, 95%);
 
   * {
     box-sizing: border-box;
