@@ -3,6 +3,8 @@ html {
   background: $color-background;
   color: $color-text-primary;
   font-family: 'Comfortaa', sans-serif;
+
+  // COOL LIL PINK DOTS
   // background: radial-gradient(
   //   circle,
   //   $color-secondary,
@@ -12,6 +14,7 @@ html {
   // );
   // background-size: 20px 20px;
 
+  // PINK CROSSES
   // background:
   //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
   //   radial-gradient(circle, transparent 20%, $color-background   20%, $color-background 80%, transparent 80%, transparent) 50px 50px,
@@ -19,32 +22,6 @@ html {
   //   linear-gradient(90deg, $color-secondary 8px, transparent 8px) -4px 0;
   // background-color: $color-background;
   // background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
-
-  // TODO: combine the above two techniques to get a little circle with crosshairs overlayed
-
-  // background:
-  //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
-  //   radial-gradient(circle, transparent 20%, $color-background   20%, $color-background 80%, transparent 80%, transparent) 50px 50px,
-  //   linear-gradient($color-secondary 8px, transparent 8px) 0 -4px,
-  //   linear-gradient(90deg, $color-secondary 8px, transparent 8px) -4px 0,
-  //   radial-gradient(
-  //   circle,
-  //   $color-secondary,
-  //   $color-secondary 15%,
-  //   $color-background 15%,
-  //   $color-background);
-  //
-  // background-size: 20px 20px;
-
-
-  // background:
-  //   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 80%, transparent 80%, transparent),
-  //   radial-gradient(circle, transparent 20%, $color-background   20%, $color-background 80%, transparent 80%, transparent) 50px 50px,
-  //   linear-gradient($color-secondary 8px, transparent 8px) 0 -4px,
-  //   linear-gradient(90deg, $color-secondary 8px, transparent 8px) -4px 0;
-  //
-  // background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
-
 
   background:
   radial-gradient(circle, transparent 20%, $color-background 20%, $color-background 90%, transparent 90%, transparent),
@@ -77,15 +54,20 @@ a:hover {
 
 h2 {
   font-weight: 300;
+  font-size: 4rem;
+  margin-top: 0;
 }
 
-.content-container {
-  width: 80%;
-  margin: 4rem auto;
-  text-align: center;
-  img {
-    display: block;
-    width: 100%;
+.album-page {
+  padding-top: 4rem;
+  .content-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    img {
+      display: block;
+      width: 100%;
+    }
   }
 }
 

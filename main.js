@@ -140,7 +140,7 @@ function renderImage(e) {
   console.log('displaying image: ' + imagePath);
   $g_mainContainer.html('');
   var content = '<div class="content-container">' +
-                '<img src="' +
+                '<img class="current-image" src="' +
                 imagePath +
                 '"></div>';
   $g_mainContainer.append(content);
