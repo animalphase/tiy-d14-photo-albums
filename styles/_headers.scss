@@ -15,11 +15,10 @@ nav {
 }
 
 .nav-album-links {
-  float: right;
+}
 
-  a {
-    display: inline-block;
-    margin-left: 2rem;
-
-  }
+.album-page nav {
+  margin-top: 0;
+  float: left;
+  height: 100vh;
 }

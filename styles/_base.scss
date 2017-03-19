@@ -47,7 +47,7 @@ h2 {
 }
 
 .content-container {
-  width: 80%;
+  width: 90%;
   margin: 4rem auto;
   text-align: center;
   img {
@@ -56,14 +56,30 @@ h2 {
   }
 }
 
-/*
-#mainContainer {
-  opacity: 0;
-  transition: 1s opacity ease;
-}
 
-#mainContainer.fade-in {
-  transition: 1s opacity ease;
-  opacity: 1;
+.menu-link {
+  display: inline-block;
+  padding: 2rem 2.3rem 2rem 2rem;
+  text-align: center;
+  border: $border-width-meaurement solid $color-borders;
+  border-radius: $border-radius-measurement;
+  background-color: #fff;
+  @include shadow-box-main;
+  transition: .3s ease all;
+
+  &:hover, &:focus {
+    border-color: $color-link;;
+    //@include shadow-box-main-hover;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::before {
+    font-family: FontAwesome;
+   content: "\f0a5";
+   display: inline-block;
+   padding-right: 1rem;
+  }
 }
-*/
