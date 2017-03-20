@@ -90,13 +90,14 @@ function renderAlbumsPage(albumsUl) {
   $g_mainContainer.removeClass();
 
   // add new content
+  $g_mainContainer.addClass('albums-page');
   $g_mainContainer.append($header);
   $g_mainContainer.append($albumsUl);
-  $g_mainContainer.addClass('albums-page');
 
   // activate click events for all elements inserted by this module
   $albumsUl.find('a').on('click', clickAlbumLink);
 }
+
 
 
 
@@ -120,8 +121,6 @@ function renderAlbum(albumName, currentAlbum, albumImages, albumsUl) {
     $content.append('<div class="image-thumbnail"><a href="#"><img src="'+ g_imagesPath + image.filename + '"></a></div>');
   });
 
-
-
   // reset page cotainer
   $g_mainContainer.html('');
   $g_mainContainer.removeClass();
@@ -130,10 +129,6 @@ function renderAlbum(albumName, currentAlbum, albumImages, albumsUl) {
   $g_mainContainer.addClass('album-page');
   $g_mainContainer.prepend($nav);
   $g_mainContainer.append($content);
-
-
-
-
 
   // activate click events for all elements inserted by this module
   $nav.find('.menu-link').on('click', clickAlbumsPageLink);
@@ -165,9 +160,9 @@ function renderImagePage(targetImage, _currentAlbum) {
   $g_mainContainer.removeClass();
 
   // add new content
+  $g_mainContainer.addClass('image-page');
   $g_mainContainer.prepend($imageNav);
   $g_mainContainer.append($content);
-  $g_mainContainer.addClass('image-page');
 
   // activate click events for all elements inserted by this module
   $imageNav.find('.menu-link').on('click', clickAlbumLink);
