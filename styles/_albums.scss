@@ -15,6 +15,11 @@
       width: 30rem;
       display: inline-block;
     }
+
+    img {
+      display: block;
+      width: 100%;
+    }
   }
 
   .album-link {
@@ -37,26 +42,5 @@
     &:focus {
       outline: none;
     }
-  }
-}
-
-
-.menu-link {
-  display: inline-block;
-  padding: 2rem 2rem;
-  text-align: center;
-  border: $border-width-meaurement solid $color-borders;
-  border-radius: $border-radius-measurement;
-  background-color: #fff;
-  @include shadow-box-main;
-  transition: .3s ease all;
-
-  &:hover, &:focus {
-    border-color: $color-link;;
-    //@include shadow-box-main-hover;
-  }
-
-  &:focus {
-    outline: none;
   }
 }

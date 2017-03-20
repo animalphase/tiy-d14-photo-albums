@@ -11,21 +11,20 @@
 
 
 nav {
-  margin: 4rem;
+  margin: 0 4rem 4rem 0;
+  float: left;
 }
 
 .album-page nav {
-  margin: 0 4rem;
-  float: left;
   height: 100vh;
+  margin-bottom: 0; 
 }
 
 .nav-album-links {
-  float: right;
+}
 
-  a {
-    display: inline-block;
-    margin-left: 2rem;
-
-  }
+.album-page nav {
+    margin-top: 0;
+  float: left;
+  height: 100vh;
 }

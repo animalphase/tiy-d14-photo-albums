@@ -58,27 +58,41 @@ h2 {
   margin-top: 0;
 }
 
-.album-page {
-  padding-top: 4rem;
-  .content-container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    img {
-      display: block;
-      width: 100%;
-    }
+
+.content-container {
+  width: 90%;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+
+.menu-link {
+  display: inline-block;
+  padding: 2rem 2.3rem 2rem 2rem;
+  text-align: center;
+  border: $border-width-meaurement solid $color-borders;
+  border-radius: $border-radius-measurement;
+  background-color: #fff;
+  @include shadow-box-main;
+  transition: .3s ease all;
+
+  &:hover, &:focus {
+    border-color: $color-link;;
+    //@include shadow-box-main-hover;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::before {
+    font-family: FontAwesome;
+   content: "\f0a5";
+   display: inline-block;
+   padding-right: 1rem;
   }
 }
 
-/*
-#mainContainer {
-  opacity: 0;
-  transition: 1s opacity ease;
+.album-page {
+  padding: 0 4rem 4rem 4rem;
 }
-
-#mainContainer.fade-in {
-  transition: 1s opacity ease;
-  opacity: 1;
-}
-*/
