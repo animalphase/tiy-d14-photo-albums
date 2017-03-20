@@ -85,14 +85,16 @@ function renderAlbumsPage(albumsUl) {
   var $header = $('<header class="albums-header"><h1>My Albums</h1></header>');
   var $albumsUl = $(albumsUl);
 
-  // put those into the dom
+  // reset page cotainer
   $g_mainContainer.html('');
+  $g_mainContainer.removeClass();
+
+  // add new content
   $g_mainContainer.append($header);
   $g_mainContainer.append($albumsUl);
-  $g_mainContainer.removeClass(); //remove all classes
   $g_mainContainer.addClass('albums-page');
 
-  // after everything is in place, activate their event listeners
+  // activate click events for all elements inserted by this module
   $albumsUl.find('a').on('click', clickAlbumLink);
 }
 
@@ -107,24 +109,24 @@ function renderAlbum(albumName, currentAlbum, albumImages, albumsUl) {
                     '</nav>' );
 
   var $albumsUL = $(albumsUl);
-  $nav.append($albumsUL);
+  $nav.find('.nav-album-links').append($albumsUL);
 
 
   var $content = $( '<div class="content-container"><h2 class="album-header"></h2></div>');
-  $content.find('.album-header').append(
-                      '<i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;' +
-                      currentAlbum);
+  $content.find('.album-header').append('<i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;' + currentAlbum);
 
   // go through each image in this album and put it into the dom
   albumImages.forEach(function(image, i, array) {
     $content.append('<div class="image-thumbnail"><a href="#"><img src="'+ g_imagesPath + image.filename + '"></a></div>');
   });
 
+
+
   // reset page cotainer
   $g_mainContainer.html('');
-  $g_mainContainer.removeClass(); //remove all classes
+  $g_mainContainer.removeClass();
 
-  // add the new
+  // add new content
   $g_mainContainer.addClass('album-page');
   $g_mainContainer.prepend($nav);
   $g_mainContainer.append($content);
@@ -158,10 +160,13 @@ function renderImagePage(targetImage, _currentAlbum) {
                         '">' +
                       '</div>' );
 
+  // reset page cotainer
   $g_mainContainer.html('');
+  $g_mainContainer.removeClass();
+
+  // add new content
   $g_mainContainer.prepend($imageNav);
   $g_mainContainer.append($content);
-  $g_mainContainer.removeClass(); //remove all classes
   $g_mainContainer.addClass('image-page');
 
   // activate click events for all elements inserted by this module
