@@ -105,14 +105,15 @@ function renderAlbum(albumName, currentAlbum, albumImages, albumsUl) {
                       '<div class="nav-album-links">' +
                       '</div>' +
                     '</nav>' );
+
   var $albumsUL = $(albumsUl);
   $nav.append($albumsUL);
 
 
   var $content = $( '<div class="content-container"><h2 class="album-header"></h2></div>');
   $content.find('.album-header').append(
-                    '<i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;' +
-                    currentAlbum);
+                      '<i class="fa fa-clone" aria-hidden="true"></i>&nbsp;&nbsp;' +
+                      currentAlbum);
 
   // go through each image in this album and put it into the dom
   albumImages.forEach(function(image, i, array) {
@@ -145,20 +146,21 @@ function renderAlbum(albumName, currentAlbum, albumImages, albumsUl) {
 
 function renderImagePage(targetImage, _currentAlbum) {
 
-  var $imageNav = $( '<nav>' +
-                '<a href="#" class="menu-link">' +
-                _currentAlbum +
-                '</a>' +
-                '</nav>' );
+  var $imageNav = $(  '<nav>' +
+                        '<a href="#" class="menu-link">' +
+                          _currentAlbum +
+                        '</a>' +
+                      '</nav>' );
 
-  var content = '<div class="content-container">' +
-                '<img class="current-image" src="' +
-                targetImage +
-                '"></div>';
+  var $content = $(   '<div class="content-container">' +
+                        '<img class="current-image" src="' +
+                          targetImage +
+                        '">' +
+                      '</div>' );
 
   $g_mainContainer.html('');
   $g_mainContainer.prepend($imageNav);
-  $g_mainContainer.append(content);
+  $g_mainContainer.append($content);
   $g_mainContainer.removeClass(); //remove all classes
   $g_mainContainer.addClass('image-page');
 
