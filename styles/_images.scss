@@ -6,9 +6,24 @@
   display: inline-block;
   width: 30rem;
   margin: 2rem;
+  a {
+
+  }
+
   img {
     display: block;
     width: 100%;
+    border-radius: $border-radius-measurement;
+    overflow: hidden;
     @include shadow-box-main;
+
+  }
+}
+
+.image-page {
+  padding: 0 4rem 4rem 4rem;
+  .current-image {
+    display: block;
+    max-width: 100%;
   }
 }
